@@ -1,0 +1,105 @@
+const photo = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=82`;
+
+const catalogue = [
+  ['buds-pro', 'Écouteurs sans fil Buds Pro', 'Soundcore', 249, 169, 'electronique', 'photo-1606220945770-b5b6c2c55bf1', 18],
+  ['headphones', 'Casque Bluetooth Studio', 'JBL', 389, 279, 'electronique', 'photo-1505740420928-5e560c06d30e', 12],
+  ['watch', 'Montre connectée Active 2', 'Amazfit', 499, 359, 'electronique', 'photo-1523275335684-37898b6baf30', 9],
+  ['speaker', 'Enceinte Bluetooth portable', 'Anker', 219, 149, 'electronique', 'photo-1608043152269-423dbba4e7e1', 21],
+  ['camera', 'Appareil photo instantané Mini', 'Fujifilm', 579, 449, 'electronique', 'photo-1516035069371-29a1b244cc32', 6],
+  ['keyboard', 'Clavier mécanique compact', 'Logitech', 329, 239, 'electronique', 'photo-1587829741301-dc798b83add3', 0],
+  ['lamp', 'Lampe de table minimaliste', 'Nova', 179, 119, 'maison', 'photo-1507473885765-e6ed057f782c', 24],
+  ['vase', 'Vase décoratif en céramique', 'Atelier', 129, 89, 'maison', 'photo-1578500494198-246f612d3b3d', 17],
+  ['bedding', 'Parure de lit coton naturel', 'Casa', 299, 219, 'maison', 'photo-1631049307264-da0ec9d70304', 11],
+  ['chair', 'Fauteuil design scandinave', 'Nordik', 899, 699, 'maison', 'photo-1505693416388-ac5ce068fe85', 4],
+  ['pan', 'Poêle antiadhésive 28 cm', 'Tefal', 189, 139, 'maison', 'photo-1556911220-bff31c812dba', 14],
+  ['candle', 'Bougie parfumée Ambre', 'Maison S.', 89, 59, 'maison', 'photo-1603006905003-be475563bc59', 32],
+  ['serum', 'Sérum visage hydratant 30 ml', 'The Ordinary', 99, 72, 'beaute', 'photo-1608248543803-ba4f8c70ae0b', 27],
+  ['skincare', 'Coffret soin éclat', 'Nuxe', 189, 139, 'beaute', 'photo-1556229010-6c3f2c9ca5f8', 10],
+  ['hairdryer', 'Sèche-cheveux ionique', 'Remington', 269, 199, 'beaute', 'photo-1522338242992-e1a54906a8da', 8],
+  ['perfume', 'Eau de parfum Élégance 50 ml', 'Lazuli', 219, 159, 'beaute', 'photo-1541643600914-78b084683601', 13],
+  ['lipstick', 'Rouge à lèvres velours', 'Make Up', 69, 49, 'beaute', 'photo-1586495777744-4413f21062fa', 29],
+  ['sunglasses', 'Lunettes de soleil solaire', 'Polaroid', 199, 139, 'beaute', 'photo-1511499767150-a48a237f0083', 16],
+  ['sneakers', 'Baskets urbaines Everyday', 'Puma', 329, 249, 'mode', 'photo-1525966222134-fcfa99b8ae77', 19],
+  ['bag', 'Sac bandoulière en cuir vegan', 'Luna', 259, 189, 'mode', 'photo-1548036328-c9fa89d128fa', 7],
+  ['jacket', 'Veste légère mi-saison', 'Celio', 349, 259, 'mode', 'photo-1544923246-77307dd654cb', 8],
+  ['backpack', 'Sac à dos quotidien 20 L', 'Eastpak', 229, 169, 'mode', 'photo-1553062407-98eeb64c6a62', 14],
+  ['wallet', 'Portefeuille compact', 'Luna', 119, 79, 'mode', 'photo-1627123424574-724758594e93', 22],
+  ['scarf', 'Écharpe douce en laine mélangée', 'Studio 9', 139, 99, 'mode', 'photo-1601924994987-69e26d50dc26', 18],
+  ['charger', 'Chargeur rapide USB-C 30 W', 'Anker', 99, 69, 'accessoires', 'photo-1583863788434-e58a36330cf0', 35],
+  ['case', 'Coque renforcée universelle', 'Spigen', 79, 49, 'accessoires', 'photo-1601593346740-925612772716', 42],
+  ['bottle', 'Gourde isotherme 600 ml', 'Hydro', 119, 79, 'accessoires', 'photo-1602143407151-7111542de6e8', 26],
+  ['mouse', 'Souris sans fil ergonomique', 'Logitech', 149, 109, 'accessoires', 'photo-1527814050087-3793815479db', 20],
+  ['blender', 'Blender compact 600 W', 'Moulinex', 279, 199, 'petit-electromenager', 'photo-1570222094114-d054a817e56b', 11],
+  ['coffee', 'Machine à café compacte', 'Krups', 599, 449, 'petit-electromenager', 'photo-1495474472287-4d71bcdd2085', 5],
+  ['toaster', 'Grille-pain 2 fentes', 'Tefal', 169, 119, 'petit-electromenager', 'photo-1527515637462-cff94eecc1ac', 13],
+  ['vacuum', 'Aspirateur balai sans fil', 'Rowenta', 899, 699, 'petit-electromenager', 'photo-1558317374-067fb5f30001', 4],
+];
+
+const localizedNames = {
+  'buds-pro': { en: 'Wireless Buds Pro earbuds', ar: 'سماعات لاسلكية بودز برو' },
+  headphones: { en: 'Studio Bluetooth headphones', ar: 'سماعة رأس بلوتوث ستوديو' },
+  watch: { en: 'Active 2 smart watch', ar: 'ساعة ذكية أكتيف ٢' },
+  speaker: { en: 'Portable Bluetooth speaker', ar: 'مكبر صوت بلوتوث محمول' },
+  camera: { en: 'Mini instant camera', ar: 'كاميرا فورية صغيرة' },
+  keyboard: { en: 'Compact mechanical keyboard', ar: 'لوحة مفاتيح ميكانيكية صغيرة' },
+  lamp: { en: 'Minimalist table lamp', ar: 'مصباح طاولة بتصميم بسيط' },
+  vase: { en: 'Decorative ceramic vase', ar: 'مزهرية سيراميك للزينة' },
+  bedding: { en: 'Natural cotton bedding set', ar: 'طقم فراش من القطن الطبيعي' },
+  chair: { en: 'Scandinavian design armchair', ar: 'كرسي بذراعين بتصميم اسكندنافي' },
+  pan: { en: '28 cm non-stick frying pan', ar: 'مقلاة غير لاصقة ٢٨ سم' },
+  candle: { en: 'Amber scented candle', ar: 'شمعة معطرة برائحة العنبر' },
+  serum: { en: 'Hydrating face serum 30 ml', ar: 'مصل مرطب للوجه ٣٠ مل' },
+  skincare: { en: 'Glow skincare gift set', ar: 'مجموعة عناية وإشراقة للبشرة' },
+  hairdryer: { en: 'Ionic hair dryer', ar: 'مجفف شعر أيوني' },
+  perfume: { en: 'Élégance eau de parfum 50 ml', ar: 'إيليغانس ماء عطر ٥٠ مل' },
+  lipstick: { en: 'Velvet lipstick', ar: 'أحمر شفاه مخملي' },
+  sunglasses: { en: 'Everyday sunglasses', ar: 'نظارات شمسية يومية' },
+  sneakers: { en: 'Everyday urban sneakers', ar: 'حذاء رياضي حضري يومي' },
+  bag: { en: 'Vegan leather crossbody bag', ar: 'حقيبة كتف من الجلد النباتي' },
+  jacket: { en: 'Lightweight mid-season jacket', ar: 'سترة خفيفة للمواسم المعتدلة' },
+  backpack: { en: 'Everyday backpack 20 L', ar: 'حقيبة ظهر يومية ٢٠ لتر' },
+  wallet: { en: 'Compact wallet', ar: 'محفظة صغيرة' },
+  scarf: { en: 'Soft wool-blend scarf', ar: 'وشاح ناعم بمزيج الصوف' },
+  charger: { en: '30 W USB-C fast charger', ar: 'شاحن سريع يو إس بي سي ٣٠ واط' },
+  case: { en: 'Reinforced universal phone case', ar: 'غطاء هاتف عالمي مقوى' },
+  bottle: { en: '600 ml insulated water bottle', ar: 'قارورة حرارية ٦٠٠ مل' },
+  mouse: { en: 'Ergonomic wireless mouse', ar: 'فأرة لاسلكية مريحة' },
+  blender: { en: 'Compact 600 W blender', ar: 'خلاط صغير ٦٠٠ واط' },
+  coffee: { en: 'Compact coffee machine', ar: 'آلة قهوة صغيرة' },
+  toaster: { en: 'Two-slice toaster', ar: 'محمصة خبز لشريحتين' },
+  vacuum: { en: 'Cordless stick vacuum cleaner', ar: 'مكنسة كهربائية لاسلكية عمودية' },
+};
+
+export const products = catalogue.map(([id, name, brand, originalPrice, price, category, image, stock], index) => ({
+  id,
+  name,
+  names: localizedNames[id],
+  brand,
+  originalPrice,
+  price,
+  category,
+  image: photo(image),
+  stock,
+  isNew: index > 19 && index < 28,
+  isPopular: ['buds-pro', 'watch', 'sneakers', 'blender'].includes(id),
+  description: {
+    fr: `Un indispensable ${category === 'maison' ? 'pour votre intérieur' : 'du quotidien'}, choisi pour son excellent rapport qualité-prix. Produit de démonstration, stock indicatif.`,
+    en: `An everyday essential selected for its excellent value. Demo product; stock is indicative.`,
+    ar: 'اختيار عملي بجودة مناسبة وسعر مخفّض. منتج تجريبي والمخزون إرشادي.',
+  },
+}));
+
+export const categories = [
+  { id: 'electronique', icon: '◉' },
+  { id: 'maison', icon: '⌂' },
+  { id: 'beaute', icon: '✦' },
+  { id: 'mode', icon: '◇' },
+  { id: 'accessoires', icon: '⌁' },
+  { id: 'petit-electromenager', icon: '▣' },
+];
+
+export const getDiscount = (product) =>
+  Math.round((1 - product.price / product.originalPrice) * 100);
+
+export const getProductName = (product, language) =>
+  product.names?.[language] ?? product.name;
